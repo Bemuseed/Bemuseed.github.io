@@ -1,9 +1,3 @@
-baseURL = 'Bemuseed.github.io'
+baseURL = 'http://example.org/'
 languageCode = 'en-us'
-title = 'Calebs blog'
-
-theme = "ananke"
-image = "images/calvin.jpg"
-icon = "images/calvin.jpg"
-logoPath = "images/calvin.jpg"
-logo = true
+title = 'My New Hugo Site'
