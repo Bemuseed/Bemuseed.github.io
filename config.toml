@@ -1,4 +1,4 @@
-baseURL = '/'
+baseURL = 'Bemuseed.github.io'
 uglyURLs = true
 relativeURLs = true
 languageCode = 'en-us'
