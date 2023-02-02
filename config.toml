@@ -1,0 +1,6 @@
+baseURL = '/'
+uglyURLs = true
+relativeURLs = true
+languageCode = 'en-us'
+title = 'Calebs Site'
+theme = 'ananke'
