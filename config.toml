@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 baseURL = '//bemuseed.github.io'
-=======
-baseURL = 'bemuseed.github.io'
->>>>>>> 22eb50c0b5499f62776cfa2e058a2c92bda7854d
 uglyURLs = true
 relativeURLs = true
 languageCode = 'en-us'
