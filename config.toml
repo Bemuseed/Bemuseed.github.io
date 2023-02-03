@@ -13,7 +13,7 @@ enableRobotsTXT = true
 
 [languages]
   [languages.en]
-    title = "Caleb's Site"
+    title = "Caleb Mullan's Site"
     weight = 1
     contentDir = "content/"
     # languageDirection = 'rtl' for Right-To-Left languages
