@@ -83,7 +83,9 @@ def list_flatten(matrix_list):
 ```python
 >>> flattened, shapes, offsets, limits = list_flatten(tensors)
 ```
-This should give the desired 1D array of numbers, for you to use as you need to.
+Now you have your 1D array! We can now manipulate it as we please. For example, let's see how many floating point numbers are in the whole model:
+
+![The total number of numbers in the model](images/tensor_size.png)
 
 ## Unflattening
 
