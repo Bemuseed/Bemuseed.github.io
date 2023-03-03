@@ -6,7 +6,9 @@ draft: false
 
 ## Introduction
 
-A Pytorch model, like any neural net, is essentially a series of floating point numbers. These are contained within tensors, a form of array, and most models exist as a list of tensors of varying shapes, sizes, and dimensions. This makes mathematical operations on these numbers more difficult, like calculating an average model or performing mutations using techniques like Principal Component Analysis.
+A Pytorch model, like any neural net, is essentially a series of floating point numbers. These are contained within tensors, a form of array, and most models exist as a list of tensors of varying shapes, sizes, and dimensions. This makes mathematical operations on these numbers more difficult, like calculating an average model or performing mutations using techniques like Principal Component Analysis. Even just for comparing models side-by-side, 'flattening' them is useful.
+
+![A neural net](images/neural_net_weights.png)
 
 In this guide, you'll be shown how to convert a PyTorch model into a one-dimensional array of floating point numbers, and back again, in the following process:
 - Extracting the structure from a .ckpt file.

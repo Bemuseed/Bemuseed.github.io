@@ -1,7 +1,7 @@
 ---
 title: "Creating Novel Art Styles With AI"
 date: 2023-03-02T01:08:11Z
-draft: true
+draft: false
 ---
 
 The goal of this project is to enable the creation of new, appealing art-styles with AI. This is to be done by manipulating Stable Diffusion models trained on pre-existing, specific styles. The aim is that we'll be able to move around the 'space' of all such models, using both model merging and Principal Component Analysis.
