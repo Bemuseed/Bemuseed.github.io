@@ -1,12 +1,12 @@
 ---
-title: "A guide to flattening and unflattening Pytorch models"
+title: "A guide to mathematically comparing Stable Diffusion models"
 date: 2023-02-03T10:42:09Z
 draft: false
 ---
 
 ## Introduction
 
-A Pytorch model, like any neural net, is essentially a series of floating point numbers. These are contained within tensors, a form of array, and most models exist as a list of tensors of varying shapes, sizes, and dimensions. This makes mathematical operations on these numbers more difficult, like calculating an average model or performing mutations using techniques like Principal Component Analysis. Even just for comparing models side-by-side, 'flattening' them is useful.
+A Stable Diffusion model, whether a complete copy or a LoRa, is just a Pytorch model - and a Pytorch model like any neural net, is just a series of floating point numbers. These are contained within tensors, a form of array, and most models exist as a list of tensors of varying shapes, sizes, and dimensions. Being able to compare them is useful for any form of statistical analysis, or just calculating useful metrics like average difference of values, like we will here.
 
 ![A neural net](images/neural_net_weights.png)
 
@@ -24,18 +24,20 @@ A .ckpt file is just a Python dictionary that's been saved to disk using the 'pi
 >>> tensor_dict = torch.load("<name-of-model>.ckpt", map_location="cpu")
 ```
 
-Feel free to look at the dictionary. It consists of a single key-value pair, with the key being the string ```state_dict```, and the value being another dictionary. _That_ dictionary contains 1131 key-value pairs, each value being the Pytorch ```Tensor``` objects that contain the numbers we're interested in.
+Feel free to look at the dictionary. If you're working with a LoRa, it's a bunch of key-value pairs where the keys are strings and the values are floating point numbers. If you have a full SD model, it consists of a single key-value pair, with the key being the string ```state_dict```, and the value being another dictionary. _That_ dictionary contains 1131 key-value pairs, each value being the Pytorch ```Tensor``` objects that contain the numbers we're interested in.
+
+All further instructions will be for LoRas, just add "[state_dict]" to references to the dictionary to get it working for a full model.
 
 Now that we know the structure, we can extract those ```Tensor``` objects into a list, like so:
 
 ```python
->>> tensors = list(tensor_dict['state_dict'].values()) 
+>>> tensors = list(tensor_dict.values()) 
 ```
 We're also going to need to keep that dictionary structure for later when we want to convert back to a .ckpt file. To simplify things, and free up some memory, we'll set all the values to 0, and keep the keys the same.
 ```python
->>> new_dict = {'state_dict: dict()} 
->>> for k in list(tensor_dict['state_dict'].keys()): 
-... 	new_dict['state_dict'][k] = 0 
+>>> new_dict = dict()
+>>> for k in list(tensor_dict.keys()): 
+... 	new_dict[k] = 0 
 ```
 
 ## Flattening
@@ -87,63 +89,16 @@ Now you have your 1D array! We can now manipulate it as we please. For example, 
 
 ![The total number of numbers in the model](images/tensor_size.png)
 
-## Unflattening
+## Comparing
 
-This part is the more complex of the two. To begin, a twin for the flattening function:
+Now that we have our flattened data, comparing is fairly simple:
 ```python
-def unflatten(flattened, shapes, offsets):
-    restored = numpy.array([numpy.reshape(flattened[offsets[i]:offsets[i + 1]], shape)
-            for i, shape in enumerate(shapes)])
-    return restored
+diffs = numpy.abs(model_a_weights - model_b_weights)
+av_difference = numpy.average(diff)
 ```
 
-### A Brief Explanation
-There's a lot going on in that middle line, so here's a quick breakdown:
-- That ```offsets``` variable we made earlier keeps track of starting and ending indices in the flattened 1D array, and the ```shapes``` variable to track their shapes. 
-- A list comprehension is used to loop over both of these variables, storing the current ones in the ```i``` and ```shape``` variables within the comprehension.
-- In this part:
-```python
-flattened[offsets[i]:offsets[i + 1]]
-```
-- ... the slice of the flattened array that corresponds to the current original array is determined. ```offsets[i]``` is the starting index, and ```offsets[i+1]``` the ending index.
--```numpy.reshape is used with this and the ```shape``` variable as its arguments, to reshape the slice of the flat array into its original shape.
+numpy does the heavy lifting here. The subtraction of the two arrays gives an array of every value subtracted by its corresponding value; numpy.abs takes this and sets each number to its absolute value; and numpy.average return the average value for this entire array.
 
-### Moving On
-And now a corresponding function for ```list_flatten```:
-```python
-def list_unflatten(flattened, shapes, offsets, limits):
-    unflattened = []
-    for i in range(len(limits) - 1):
-        section = flattened[limits[i]:limits[i+1]]
-        unflattened.append(unflatten(section, shapes[i], offsets[i]))
-    return unflattened
-```
-Which you can then use with the output of the flattening functions:
-```python
->>> restored_tensor_list = list_unflatten(flattened, shapes, offsets, limits)
-``` 
-(A word of warning - running this part will eat up your RAM. Make sure to free some up before running it. Linux users without a lot of memory who can increase their swap partition size should do so.)
+# Conclusion
 
-## Repackaging
-
-And finally, to take our modified tensor list and place it in a new .ckpt file, we first return it to its original dictionary format. First, we convert the arrays back into ```Tensor``` objects:
-
-```python
->>> tensors = [torch.from_numpy(nd) for nd in tensors]
-```
-Then we use that ```dict_template``` dictionary we prepared earlier, and populate it with our new tensor data:
-
-```python
->>> t_counter = 0
->>> new_dict = {'state_dict': dict()}
->>> for k in list(dict_template['state_dict'].keys()):
->>> 	new_dict['state_dict'][k] = tensors[t_counter]
->>>     t_counter += 1
-```
-
-And finally, we use the Pytorch save method to produce our new .ckpt file.
-
-```python
->>> torch.save(new_dict, "my_model".ckpt)
-```
-
+Mathematical comparison is a great way to see how different training datasets and parameters affect the training, whether Dreambooth or LoRa. By iterating and averaging these difference values, you can even calculate how different a model is, on average, to a whole set of others.
