@@ -9,6 +9,9 @@ The goal of this project is to enable the creation of new, appealing art-styles 
 The project currently consists of a method of training styled LoRa's, and an interactive program that combines and analyses them.
 
 # Groundwork knowledge
+
+Here are some of the core pieces this project builds from if you're not already aware of them:
+
 ## Stable Diffusion
 
 Stable Diffusion is an open-source deep learning model that can generate images from text and other images. A powerful tool called Automatic111 provides a web interface that makes using it much easier.
@@ -52,6 +55,8 @@ In the prompt box, write "[artist name here] art, [basic description of image su
 If the image doesn't follow the shapes of the original, check the second output. This shows the lines ControlNet-canny detected. If they're too messy, increase the low and high threshold - too low, decrease them.
 
 To increase efficiency, you can use the X/Y plot tool in the Scripts section to generate every stylized version of the current image at once. Select Prompt S/R under X type, and writer the names of all the artists you're using in the X values box, comma-separated and starting with one whose name is currently in the prompt. Select "Include Sub Images" and then generate. It'll do all of them at once, and you can find them in "outputs\text2img-images\\[date]".
+
+![The X/Y plot script](images/x_y_plot_screenshot.png)
 
 ## Training
 
@@ -207,8 +212,7 @@ Then we loop for the number of iterations, and within it, get the merged models 
 
 # Next steps for the project
 
-If I had more time, here's what I would do/explore next
-
+Here are some possible next-steps for the project:
 - General improvements to application, particularly input checks (such that a mistype can never cause a crash).
 - Direct comparison between merged LoRa models and the Dreambooth equivalents (given the same training data etc.).
 - Using human evaluation via surveys to confirm if mathematical difference is a good metric for stylistic difference.
