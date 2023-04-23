@@ -56,8 +56,6 @@ If the image doesn't follow the shapes of the original, check the second output.
 
 To increase efficiency, you can use the X/Y plot tool in the Scripts section to generate every stylized version of the current image at once. Select Prompt S/R under X type, and writer the names of all the artists you're using in the X values box, comma-separated and starting with one whose name is currently in the prompt. Select "Include Sub Images" and then generate. It'll do all of them at once, and you can find them in "outputs\text2img-images\\[date]".
 
-![The X/Y plot script](images/x_y_plot_screenshot.png)
-
 ## Training
 
 Kohya has a useful [Google Colab notebook](https://colab.research.google.com/github/Linaqruf/kohya-trainer/blob/main/kohya-LoRA-dreambooth.ipynb) for training LoRas. Most of it is self-explanatory if you just go from top-to-bottom. Do note:
