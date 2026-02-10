@@ -1,1 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on Caleb Mullan's Site</title><link>//bemuseed.github.io/categories.html</link><description>Recent content in Categories on Caleb Mullan's Site</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="//bemuseed.github.io/categories/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Of All The Blogs</title>
+    <link>http://oatb.org/categories/</link>
+    <description>Recent content in Categories on Of All The Blogs</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 04 May 2024 14:08:21 +0000</lastBuildDate>
+    <atom:link href="http://oatb.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Uncategorised</title>
+      <link>http://oatb.org/categories/uncategorised/</link>
+      <pubDate>Sat, 04 May 2024 14:08:21 +0000</pubDate>
+      <guid>http://oatb.org/categories/uncategorised/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>General Ramblings</title>
+      <link>http://oatb.org/categories/general-ramblings/</link>
+      <pubDate>Sat, 11 Nov 2023 15:23:19 +0000</pubDate>
+      <guid>http://oatb.org/categories/general-ramblings/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Story</title>
+      <link>http://oatb.org/categories/story/</link>
+      <pubDate>Sat, 04 Nov 2023 15:00:00 +0000</pubDate>
+      <guid>http://oatb.org/categories/story/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Essay</title>
+      <link>http://oatb.org/categories/essay/</link>
+      <pubDate>Sat, 28 Oct 2023 14:00:00 +0000</pubDate>
+      <guid>http://oatb.org/categories/essay/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Poetry</title>
+      <link>http://oatb.org/categories/poetry/</link>
+      <pubDate>Sat, 21 Oct 2023 14:00:00 +0000</pubDate>
+      <guid>http://oatb.org/categories/poetry/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Someone Put Off Writing Until Saturday</title>
+      <link>http://oatb.org/categories/someone-put-off-writing-until-saturday/</link>
+      <pubDate>Sat, 23 Sep 2023 14:00:10 +0000</pubDate>
+      <guid>http://oatb.org/categories/someone-put-off-writing-until-saturday/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
